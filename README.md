@@ -41,15 +41,15 @@ If everything is configured correctly your job should dynamically allocate a sla
 
  This image provides
  * Languages
-    * JDK 1.7, 1.8 / Maven 3.0.5
+    * JDK 1.7, 1.8 / Maven 3.3.4
     * Node 0.10.24 via nvm
-    * Ruby 2.1.2 via RVM
+    * Ruby 2.2.4 via RVM
  * Services
     * Postgres 9.3
     * Xvfb
  * Browsers
      * Firefox
-     * Chrome
+     * Chrome-beta
      * Chromium
 
 ### Environment Variables
