@@ -21,7 +21,7 @@ be docker containers in this configuration. The only thing missing to make it wo
   2. Select the docker certificates directory you made
   3. Set read timeout to 5
   4. set connection timeout to 15
-  5. Click on "Test COnnection" and make sure you get a valid response
+  5. Click on "Test Connection" and make sure you get a valid response
 11. In jenkins config on your new Docker cloud add a Docker template
   1. Set the image name to: jenkins\_slave
   2. Create a label "testslave"
