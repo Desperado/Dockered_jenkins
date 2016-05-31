@@ -1,0 +1,29 @@
+jclouds-jenkins 2.8.1-1
+token-macro 1.12.1
+durable-task 1.10
+docker-plugin 0.16.0
+xvfb 1.1.3
+ws-cleanup 0.29
+rvm 0.4
+git 2.4.4
+git-client 1.19.6
+github-api 1.75
+github-branch-source 1.7
+git-parameter 0.5.1
+ghprb
+config-file-provider 2.10.1
+htmlpublisher
+cucumber-testresult-plugin
+ssh-agent
+workflow-step-api
+scm-api 1.2
+plain-credentials 1.2
+github 1.19.1
+ruby-runtime 0.12
+cucumber-reports
+greenballs 1.15
+publish-over-ssh 1.14
+nodelabelparameter
+maven-plugin 2.7.1
+htmlpublisher
+naginator 1.17
