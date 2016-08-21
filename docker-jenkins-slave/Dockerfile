@@ -41,11 +41,11 @@ ENV JAVA_OPTS -Xmx2G -Xms2G -XX:PermSize=256M -XX:MaxPermSize=256m
 
 
 # Install maven 3.3.3
-RUN wget http://mirrors.sonic.net/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz && \
+RUN wget http://mirrors.sonic.net/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
     tar -zxf apache-maven-3.3.3-bin.tar.gz && \
-    mv apache-maven-3.3.3 /usr/local && \
-    rm -f apache-maven-3.3.3-bin.tar.gz && \
-    ln -s /usr/local/apache-maven-3.3.3/bin/mvn /usr/bin/mvn
+    mv apache-maven-3.3.9 /usr/local && \
+    rm -f apache-maven-3.3.9-bin.tar.gz && \
+    ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
 
 # Postgresql 9.3
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
