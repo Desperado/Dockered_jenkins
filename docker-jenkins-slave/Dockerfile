@@ -60,21 +60,6 @@ RUN apt-get update \
     ca-certificates-java \
     && rm -rf /var/lib/apt/lists/*
 
-
-RUN \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java8-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk8-installer
-
-# Define working directory.
-WORKDIR /data
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
 RUN apt-get update \
     && apt-get install -y nodejs npm
 
@@ -153,6 +138,20 @@ ENV XVFB_SCREEN_SIZE 1024x768x24
 # Need some fonts
 COPY fonts/sourcesanspro /usr/share/fonts/sourcesanspro
 RUN fc-cache -v /usr/share/fonts/sourcesanspro
+
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+# Define working directory.
+WORKDIR /data
+
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Expose SSH port and run SSHD
 EXPOSE 22
