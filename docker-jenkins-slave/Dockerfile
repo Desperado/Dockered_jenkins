@@ -141,6 +141,8 @@ ENV XVFB_SCREEN_SIZE 1024x768x24
 COPY fonts/sourcesanspro /usr/share/fonts/sourcesanspro
 RUN fc-cache -v /usr/share/fonts/sourcesanspro
 
+RUN apt-get install -y xvfb
+
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
