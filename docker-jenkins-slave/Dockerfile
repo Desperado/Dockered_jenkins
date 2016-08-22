@@ -42,9 +42,6 @@ COPY bootstrap bootstrap
 RUN chmod +x -Rv bootstrap
 
 
-
-RUN ./bootstrap/postgres.sh
-
 USER root
 
 # Add user jenkins to the image
