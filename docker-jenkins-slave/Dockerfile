@@ -18,11 +18,6 @@ COPY locale /etc/default/locale
 RUN apt-get -qq update
 RUN apt-get install -y build-essential python-software-properties software-properties-common wget curl git fontconfig rpm
 
-# Java 1.7
-RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz
-RUN mkdir -p /opt/jdk
-RUN tar -zxf jdk-7u67-linux-x64.tar.gz -C /opt/jdk
-
 # Java 1.8
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b25/jdk-8u40-linux-x64.tar.gz
 RUN mkdir -p /opt/jdk
@@ -39,20 +34,6 @@ ENV JAVA_HOME /opt/jdk/jdk1.8.0_40
 ENV JAVA_OPTS -Xmx2G -Xms2G -XX:PermSize=256M -XX:MaxPermSize=256m
 
 
-
-# Install maven 3.3.9
-RUN wget http://mirrors.sonic.net/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
-    tar -zxf apache-maven-3.3.9-bin.tar.gz && \
-    mv apache-maven-3.3.9 /usr/local && \
-    rm -f apache-maven-3.3.9-bin.tar.gz && \
-    ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
-
-# Postgresql 9.3
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-RUN apt-get update
-RUN apt-get -y -q install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
-
 # Workaround for AUFS perms issue: https://github.com/docker/docker/issues/783#issuecomment-56013588
 # RUN mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private
 
@@ -60,7 +41,7 @@ RUN apt-get -y -q install postgresql-9.3 postgresql-client-9.3 postgresql-contri
 COPY bootstrap bootstrap
 RUN chmod +x -Rv bootstrap
 
-USER postgres
+
 
 RUN ./bootstrap/postgres.sh
 
@@ -126,20 +107,6 @@ RUN echo "source /opt/nvm/nvm.sh" >> /home/jenkins/.profile
 RUN chown jenkins /home/jenkins/.profile
 
 
-# Ruby via RVM
-#RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-#RUN gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys D39DC0E3
-# RVM key import issue, workaround found https://github.com/rvm/rvm/issues/3108
-RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-RUN \curl -sSL https://get.rvm.io | bash -s stable
-
-RUN /bin/sh -c export PATH="$PATH:/usr/local/rvm/bin" [[ -s "$HOME/.rvm/scripts/rvm" ]]
-RUN /bin/sh -c export PATH="$PATH:/usr/local/rvm/bin" -s "source '$HOME/.rvm/scripts/rvm'"
-
-RUN ./bootstrap/rvm.sh
-#RUN . /usr/local/rvm/scripts/rvm && rvm install 2.2.4
-RUN echo "source /usr/local/rvm/scripts/rvm" >> /root/.profile
-RUN echo "source /usr/local/rvm/scripts/rvm" >> /home/jenkins/.profile
 
 # Browsers
 RUN apt-get -y install xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic dbus-x11 libfontconfig1-dev
@@ -164,9 +131,6 @@ USER jenkins
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 RUN \curl -sSL https://get.rvm.io | bash -s stable
 
-RUN /bin/sh -c export PATH="$PATH:/usr/local/rvm/bin" [[ -s "$HOME/.rvm/scripts/rvm" ]]
-RUN /bin/sh -c export PATH="$PATH:/usr/local/rvm/bin" -s "source '$HOME/.rvm/scripts/rvm'"
-RUN echo "source /usr/local/rvm/scripts/rvm" >> /home/jenkins/.profile
 
 USER root
 
