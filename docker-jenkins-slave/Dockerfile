@@ -82,6 +82,9 @@ RUN apt-get update \
     ca-certificates-java \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update \
+    && apt-get install -y nodejs npm
+
 # gen dummy keys, centos doesn't autogen them like ubuntu does
 RUN /usr/bin/ssh-keygen -A
 
