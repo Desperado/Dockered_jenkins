@@ -63,7 +63,7 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
 RUN apt-get update \
-    && apt-get install -y nodejs npm
+    && apt-get install -y nodejs
 
 # gen dummy keys, centos doesn't autogen them like ubuntu does
 RUN /usr/bin/ssh-keygen -A
