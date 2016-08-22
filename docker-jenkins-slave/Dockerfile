@@ -60,6 +60,8 @@ RUN apt-get update \
     ca-certificates-java \
     && rm -rf /var/lib/apt/lists/*
 
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+
 RUN apt-get update \
     && apt-get install -y nodejs npm
 
