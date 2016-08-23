@@ -126,16 +126,9 @@ RUN chmod +x /usr/bin/google-chrome
 COPY init.d/xvfb /etc/init.d/xvfb
 RUN chmod +x /etc/init.d/xvfb
 
-USER jenkins
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-RUN \curl -sSL https://get.rvm.io | bash -s stable
-
-
-USER root
-
 ENV DISPLAY :10
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu/
-ENV XVFB_SCREEN_SIZE 1024x768x24
+ENV XVFB_SCREEN_SIZE 1368x768x24
 
 # Need some fonts
 COPY fonts/sourcesanspro /usr/share/fonts/sourcesanspro
@@ -150,6 +143,8 @@ RUN \
   apt-get install -y oracle-java8-installer && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
+
+RUN npm install jenkins
 
 # Define working directory.
 WORKDIR /data
