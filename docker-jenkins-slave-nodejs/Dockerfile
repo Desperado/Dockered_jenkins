@@ -153,5 +153,8 @@ WORKDIR /data
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Expose SSH port and run SSHD
-EXPOSE 22
-CMD ["/usr/sbin/sshd","-D"]
+#EXPOSE 22
+#CMD ["/usr/sbin/sshd","-D"]
+
+CMD ["entry.sh"]
+
