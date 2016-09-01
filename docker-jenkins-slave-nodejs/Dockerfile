@@ -144,7 +144,7 @@ ENV DISPLAY :99
 
 ADD xvfb_init /etc/init.d/xvfb
 RUN chmod a+x /etc/init.d/xvfb
-ADD docker-jenkins-slave-nodejs/xvfb-daemon-run /usr/bin/xvfb-daemon-run
+ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 
