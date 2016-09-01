@@ -108,7 +108,7 @@ RUN chown jenkins /home/jenkins/.profile
 
 
 # Browsers
-RUN apt-get -y install xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic dbus-x11 libfontconfig1-dev
+RUN apt-get -y install x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic dbus-x11 libfontconfig1-dev
 RUN apt-get -y install firefox chromium-browser ca-certificates
 COPY firefox /root/.mozilla/firefox
 
@@ -123,18 +123,29 @@ COPY shims/google-chrome /usr/bin/google-chrome
 RUN chmod +x /usr/bin/google-chrome
 
 # xvfb
-COPY init.d/xvfb /etc/init.d/xvfb
-RUN chmod +x /etc/init.d/xvfb
+#COPY init.d/xvfb /etc/init.d/xvfb
+#RUN chmod +x /etc/init.d/xvfb
 
-ENV DISPLAY :10
-ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu/
-ENV XVFB_SCREEN_SIZE 1368x768x24
+#ENV DISPLAY :10
+#ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu/
+#ENV XVFB_SCREEN_SIZE 1368x768x24
 
 # Need some fonts
 COPY fonts/sourcesanspro /usr/share/fonts/sourcesanspro
 RUN fc-cache -v /usr/share/fonts/sourcesanspro
 
 RUN apt-get install -y xvfb
+
+
+
+ENV DISPLAY :99
+
+# Install Xvfb init script
+ADD xvfb_init /etc/init.d/xvfb
+RUN chmod a+x /etc/init.d/xvfb
+ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
+RUN chmod a+x /usr/bin/xvfb-daemon-run
+
 
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
