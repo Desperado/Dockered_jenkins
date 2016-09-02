@@ -157,14 +157,18 @@ ENV DISPLAY :99
 
 # Install Xvfb init script
 
-ADD xvfb_init /etc/init.d/xvfb
-RUN chmod a+x /etc/init.d/xvfb
-ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
-RUN chmod a+x /usr/bin/xvfb-daemon-run
+#ADD xvfb_init /etc/init.d/xvfb
+#RUN chmod a+x /etc/init.d/xvfb
+#ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
+#RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 # Expose SSH port and run SSHD
-EXPOSE 22
-CMD ["/usr/sbin/sshd","-D"]
+
+
+RUN npm install
+RUN
 
 #CMD ["entry.sh"]
 
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
