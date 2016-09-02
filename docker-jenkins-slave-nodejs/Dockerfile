@@ -163,8 +163,8 @@ ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
 RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 # Expose SSH port and run SSHD
-#EXPOSE 22
-#CMD ["/usr/sbin/sshd","-D"]
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
 
-CMD ["entry.sh"]
+#CMD ["entry.sh"]
 
