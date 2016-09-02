@@ -137,17 +137,6 @@ RUN fc-cache -v /usr/share/fonts/sourcesanspro
 RUN apt-get install -y xvfb
 
 
-
-ENV DISPLAY :99
-
-# Install Xvfb init script
-
-ADD xvfb_init /etc/init.d/xvfb
-RUN chmod a+x /etc/init.d/xvfb
-ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
-RUN chmod a+x /usr/bin/xvfb-daemon-run
-
-
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
@@ -163,6 +152,15 @@ WORKDIR /data
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
+ENV DISPLAY :99
+
+# Install Xvfb init script
+
+ADD xvfb_init /etc/init.d/xvfb
+RUN chmod a+x /etc/init.d/xvfb
+ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
+RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 # Expose SSH port and run SSHD
 #EXPOSE 22
