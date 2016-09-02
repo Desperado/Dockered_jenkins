@@ -164,10 +164,6 @@ ENV DISPLAY :99
 
 # Expose SSH port and run SSHD
 
-
-RUN npm install
-RUN
-
 #CMD ["entry.sh"]
 
 EXPOSE 22
