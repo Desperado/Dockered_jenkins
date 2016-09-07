@@ -52,8 +52,8 @@ RUN fc-cache -v /usr/share/fonts/sourcesanspro
 RUN apt-get update && apt-get install -y xvfb
 
 ADD xvfb-chromium /usr/bin/xvfb-chromium
-RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
-RUN ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser
+#RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
+#RUN ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser
 
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
