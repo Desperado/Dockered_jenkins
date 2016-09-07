@@ -63,8 +63,6 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
 
-RUN npm install jenkins
-
 # Define working directory.
 WORKDIR /data
 
