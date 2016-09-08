@@ -51,7 +51,10 @@ RUN fc-cache -v /usr/share/fonts/sourcesanspro
 
 RUN apt-get update && apt-get install -y xvfb
 
-ADD xvfb-chromium /usr/bin/xvfb-chromium
+#ADD xvfb-chromium /usr/bin/xvfb-chromium
+
+ADD xvfb /etc/init.d/xvfb
+
 #RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
 #RUN ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser
 
