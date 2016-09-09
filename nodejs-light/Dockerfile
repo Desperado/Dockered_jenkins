@@ -83,6 +83,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #CMD ["entry.sh"]
 
-#EXPOSE 22
-#CMD ["/usr/sbin/sshd","-D"]
-CMD ["sudo /etc/init.d/xvfb start, "-D"]
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
+#CMD ["sudo /etc/init.d/xvfb start, "-D"]
