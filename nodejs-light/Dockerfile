@@ -54,9 +54,9 @@ RUN apt-get install -fy
 
 # Shim chrome to disable sandbox
 # See https://github.com/docker/docker/issues/1079
-RUN mv /usr/bin/google-chrome /usr/bin/google-chrome.orig
-COPY shims/google-chrome /usr/bin/google-chrome
-RUN chmod +x /usr/bin/google-chrome
+#RUN mv /usr/bin/google-chrome /usr/bin/google-chrome.orig
+#COPY shims/google-chrome /usr/bin/google-chrome
+#RUN chmod +x /usr/bin/google-chrome
 
 # Need some fonts
 COPY fonts/sourcesanspro /usr/share/fonts/sourcesanspro
