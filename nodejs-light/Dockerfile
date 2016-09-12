@@ -14,7 +14,7 @@ COPY locale /etc/default/locale
 
 #RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
 RUN apt-get -qq update
-RUN apt-get install -y build-essential python-software-properties software-properties-common wget curl git fontconfig rpm
+RUN apt-get install -y build-essential python-software-properties software-properties-common wget curl git fontconfig rpm unzip
 
 # Java 1.8
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b25/jdk-8u40-linux-x64.tar.gz
